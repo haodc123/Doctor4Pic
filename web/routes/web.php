@@ -12,9 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('home.home');
+Route::group(['middleware' => 'lang'], function() {
+    Route::get('change-language/{language}', 'HomeController@changeLanguage')->name('changeLanguage');
+    Route::get('/', function () {
+        return view('home.home');
+    });
 });
 
 Auth::routes();
